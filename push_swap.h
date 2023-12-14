@@ -6,7 +6,7 @@
 /*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/14 15:55:46 by welhox           ###   ########.fr       */
+/*   Updated: 2023/12/14 18:24:39 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int main(int argc, char **argv);
-int argcheck(int argc, char **argv);
+//int main(int argc, char argv);
+int argcheck(int argc, char *argv[]);
 int numcheck(char *str);
 
 #endif

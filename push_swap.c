@@ -6,7 +6,7 @@
 /*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2023/12/14 15:58:52 by welhox           ###   ########.fr       */
+/*   Updated: 2023/12/14 21:22:20 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,44 @@
 
 int numcheck(char *str)
 {
-    while (*str)
+    int i;
+
+    i = 0;
+    while (str[i])
     {
-        if (ft_isalnum(*str) == 0)
+        if (ft_isdigit(str[i]) == 0)
             return (0);   
-        str++;
+        i++;
     }
     return (1);
 
 }
 
 
-int argcheck(int argc, char **argv)
+int argcheck(int argc, char *argv[])
 
 {
     int i;
     int j;
 
-    i = 0;
+    i = 1;
     if (argc < 3)
         return (0);
-    
     //check for only ints
-    while (argv[i])
+    while (argv[i]) //&& i < argc)
     {
         if (numcheck(argv[i]) == 0)
             return (0);
         i++;
     }
-    i = 0;
+    i = 1;
     //check for dupes
     while (argv[i])
     {
         j = 1;
         while (argv[i + j])
         {
-            if (argv[i] == argv[i + j])
+            if (ft_strncmp(argv[i], argv[i + j], ft_strlen(argv[i])) == 0)
                 return (0);
             j++;
         }
@@ -58,7 +60,7 @@ int argcheck(int argc, char **argv)
     return (1);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 
 {
     if (argcheck(argc, argv) == 0)
@@ -67,6 +69,7 @@ int main(int argc, char **argv)
         return (0);
     
     }
+    ft_printf("Great success\n");
     return(0);
 }
 
