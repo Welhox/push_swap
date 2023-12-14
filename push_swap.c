@@ -6,7 +6,7 @@
 /*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2023/12/14 14:55:53 by welhox           ###   ########.fr       */
+/*   Updated: 2023/12/14 15:58:52 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ int argcheck(int argc, char **argv)
         }
         i++;
     }
-
+    return (1);
 }
 
 int main(int argc, char **argv)
 
 {
-    if (argcheck(argc, **argv) == 0)
-        return (ft_putendl_fd("ERROR", 1));
+    if (argcheck(argc, argv) == 0)
+    {
+        ft_putendl_fd("ERROR", 1);
+        return (0);
     
-    
+    }
     return(0);
 }
 
@@ -110,3 +112,8 @@ rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.
 
 rrr : rra and rrb at the same time. */
+
+/* • read, write, malloc, free,
+exit
+• ft_printf and any equivalent
+YOU coded */
