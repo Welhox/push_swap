@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: welhox <welhox@student.42.fr>              +#+  +:+       +#+         #
+#    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2023/12/14 15:58:09 by welhox           ###   ########.fr        #
+#    Updated: 2023/12/20 11:58:59 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_DIR = ./libft
 
 #SRC_FLS = $(LIBFT_FLS) $(FT_PRINTF_FLS) $(GNL_FLS)
 
-CFILES = push_swap.c
+CFILES = push_swap.c push_swap_argcheck.c
 
 OFILES = $(CFILES:.c=.o)
 
@@ -39,8 +39,11 @@ all: $(NAME)
 
 $(NAME): $(OFILES)
 	@make -C libft
-	ar rcs $(NAME) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME)
-#	$(CC) $(CFLAGS) $(NAME) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME)
+	$(CC) $(CFLAGS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME)
+#	ar rcs $(NAME) $(OFILES) 
+#	$(LIBFT_DIR)/$(LIBFTNAME)
+	
+	
 clean:
 	rm -f $(OFILES) 
 	@make clean -C libft/
