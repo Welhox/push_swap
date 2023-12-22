@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/20 15:34:28 by clundber         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:45:35 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long    ft_pushatoi(const char *str)
 
 {
-	long int	num;
+	long 	num;
 	int			i;
 	int			neg;
 
@@ -55,6 +55,64 @@ int numcheck(char *str)
 
 }
 
+int    arrayfree(char **array)
+
+{
+    int i;
+
+    i = 0;
+    ft_printf("freeing func activated\n");
+    while(array[i])
+    {
+        free(array[i]);
+        i++;
+    }
+    free (array);
+    return(0);
+}
+
+int oneargcheck(char *array[])
+
+{
+    int i;
+    int j;
+
+    i = 0;
+    ft_printf("got here\n");
+    //check for only ints
+    ft_printf("first string = %s\n", &array[i]);
+    while (array[i])
+    {
+        if (numcheck(array[i]) == 0)
+            return (arrayfree(array));
+        i++;
+    }
+    i = 0;
+    ft_printf("got here\n");
+    //check for dupes
+    while (array[i])
+    {
+        j = 1;
+        while (array[i + j])
+        {
+            if (ft_strncmp(array[i], array[i + j], 12) == 0)
+                return (arrayfree(array));
+            j++;
+        }
+        i++;
+    }
+    ft_printf("got here\n");
+    //check for max/min int
+    //ft_printf("ok here\n");
+    i = 0;
+    while (array[i])
+    {
+        if (ft_pushatoi(array[i]) > 2147483647 || ft_pushatoi(array[i]) < -2147483648)
+            return (arrayfree(array));
+        i++;
+    }
+    return (1);
+}
 
 int argcheck(int argc, char *argv[])
 
@@ -63,8 +121,15 @@ int argcheck(int argc, char *argv[])
     int j;
 
     i = 1;
-    if (argc < 3)
+    if (argc < 2)
         return (0);
+    if (argc == 2)
+    {
+        char    **array;
+        array = ft_split(argv[1], ' ');
+        ft_printf("first string = %s\n", array[0]);
+        return (oneargcheck(array));
+    }
     //check for only ints
     while (argv[i]) //&& i < argc)
     {

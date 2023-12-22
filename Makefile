@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2023/12/21 16:42:42 by clundber         ###   ########.fr        #
+#    Updated: 2023/12/22 15:06:03 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OFILES = $(CFILES:.c=.o)
 #--------- FLAGS ----------
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes
+CFLAGS = -Wall -Wextra -Werror -g -I includes
 
 all: $(NAME)
 
