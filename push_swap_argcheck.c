@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_argcheck.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/22 15:45:35 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:58:17 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int oneargcheck(char *array[])
     int j;
 
     i = 0;
-    ft_printf("got here\n");
+    //ft_printf("got here\n");
     //check for only ints
-    ft_printf("first string = %s\n", &array[i]);
+    //ft_printf("first string = %s\n", array[i]);
     while (array[i])
     {
         if (numcheck(array[i]) == 0)
@@ -88,7 +88,7 @@ int oneargcheck(char *array[])
         i++;
     }
     i = 0;
-    ft_printf("got here\n");
+    //ft_printf("got here\n");
     //check for dupes
     while (array[i])
     {
@@ -101,7 +101,7 @@ int oneargcheck(char *array[])
         }
         i++;
     }
-    ft_printf("got here\n");
+    //ft_printf("got here\n");
     //check for max/min int
     //ft_printf("ok here\n");
     i = 0;
@@ -123,13 +123,15 @@ int argcheck(int argc, char *argv[])
     i = 1;
     if (argc < 2)
         return (0);
-    if (argc == 2)
+    /* if (argc == 2)
     {
         char    **array;
         array = ft_split(argv[1], ' ');
-        ft_printf("first string = %s\n", array[0]);
+        if (array[1] == NULL)
+            return(arrayfree(array));
+        //ft_printf("first string = %s\n", array[0]);
         return (oneargcheck(array));
-    }
+    } */
     //check for only ints
     while (argv[i]) //&& i < argc)
     {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2023/12/22 15:51:46 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:56:55 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,24 @@ void    ft_index(t_stack *stack)
 
 }
 
-int ft_makelist(char *argv[], t_stack *stack_a)
+int ft_makelist(char *argv[], t_stack **stack_a, int argc)
 
 {
     int i;
     int number;
 
     number = 0;
-    i = 2;
-    stack_a->content = ft_atoi(argv[1]);
+    i = 1;
+    if (argc == 2)
+        i = 0;
+/*     stack_a->content = ft_atoi(argv[i]);
     stack_a->next = NULL;
+    i++; */
       while (argv[i])
     {
         number = ft_atoi(argv[i]);
-        ps_lstadd_back(&stack_a, ps_lstnew(number));
-        // malloc chekc / freeing function
+        ps_lstadd_back(stack_a, ps_lstnew(number));
+        // malloc check / freeing function
         i++;
     }
 
@@ -79,32 +82,49 @@ void   ft_listcheck(t_stack *stack_a, t_stack *stack_b) //DELETE
 
 }
 
-int main(void)//int argc, char *argv[])
+int main(int argc, char *argv[])
 
 {
-    int argc = 2;
-    char *argv[50] = {"a.out", "1 2 3 3"};
+   // int argc = 2;
+    //char *argv[50] = {"a.out", "1 2 3 3"};
     t_stack  *stack_a = NULL;
     t_stack  *stack_b = NULL;
-  /*   if (!stack_a)
-        return (0); */
-   // stack_a = NULL;
-    //stack_b = NULL;
+    char    **array;
 
+  //  stack_a = malloc(sizeof(t_stack));
+  //  stack_b = malloc(sizeof(t_stack));
+  //  stack_b->next = NULL;
+    //these needs to be moved to after argchecks
 
-    if (argcheck(argc, argv) == 0)
+    if (argc == 2)
     {
-        ft_putendl_fd("Error", 2);
-        return (0);  
+        array = ft_split(argv[1], ' ');
+        if (array[1] == NULL)
+            return(arrayfree(array));
+        if (oneargcheck(array) == 0)
+        {
+            ft_putendl_fd("Error", 2);
+            return (0);
+        }
+        if (ft_makelist(array, &stack_a, argc) == 0)
+            return (0);
+        arrayfree(array);  
     }
-    stack_a = malloc(sizeof(t_stack));
-    stack_b = malloc(sizeof(t_stack));
-    stack_b->next = NULL;
-    ft_printf("ok here");
-    /*  if (ft_makelist(argv, stack_a) == 0)
-        return (0);
-    stack_a = swap_sasb(stack_a);
-    ft_listcheck(stack_a, stack_b);  */
+    else
+    {
+        if (argcheck(argc, argv) == 0)
+        {    
+            ft_putendl_fd("Error", 2);
+            return (0);
+        }
+        if (ft_makelist(argv, &stack_a, argc) == 0)
+            return (0);     
+    }
+
+    stack_a = swap_sasb(&stack_a);
+    //stack_a = swap_sasb(stack_a);
+    //swap_pb(&stack_a, &stack_b);
+    ft_listcheck(stack_a, stack_b);  
     ft_printf("Great success\n");
     return(0);
 }

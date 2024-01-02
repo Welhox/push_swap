@@ -3,34 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sortfunc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:19:19 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/21 17:17:06 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:56:56 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*swap_sasb(t_stack *stack_a)
+t_stack	*swap_sasb(t_stack **stack_ab)
 
 {
 	t_stack *ptr;
 
 	ptr = NULL;
-	ptr = stack_a->next;
-	stack_a->next = ptr->next;
-	ptr->next = stack_a;
+	ptr = (*stack_ab)->next;
+	(*stack_ab)->next = ptr->next;
+	ptr->next = (*stack_ab);
 	return (ptr);
 }
 
-/* t_stack	*swap_pa(t_stack **stack_a, t_stack **stack_b)
+/* void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 
 {
-
-
-	
+	stack_a = swap_sasb(stack_a);
+	stack_b = swap_sasb(stack_b);
 } */
+void	swap_pb(t_stack **stack_a, t_stack **stack_b)
+
+{
+	t_stack *a_ptr;
+	t_stack *b_ptr;
+
+	a_ptr = (*stack_a)->next;
+	b_ptr = *stack_a;
+
+	*stack_a = a_ptr;
+	b_ptr->next = *stack_b;
+	*stack_b = b_ptr;
+} 
 
 
 /* V.1 The rules
