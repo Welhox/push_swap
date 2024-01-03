@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/03 12:43:25 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:51:46 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void   ft_listcheck(t_stack *stack_a, t_stack *stack_b) //DELETE
         aptr = aptr->next;
         ft_printf("A = %d\n", (aptr->content));
     }
-     ft_printf("B = %d\n", (bptr->content));
+     ft_printf("\nB = %d\n", (bptr->content));
+     
     while (bptr->next)
     {
         bptr = bptr->next;
@@ -114,8 +115,9 @@ int main(int argc, char *argv[])
     }
 
     //swap_sa(&stack_a, 1);
-    //stack_a = swap_sa(&stack_a);
+    
     swap_pb(&stack_a, &stack_b);
+    //swap_sa(&stack_a, 1);
     swap_pb(&stack_a, &stack_b);
     ft_listcheck(stack_a, stack_b);  
     ft_printf("Great success\n");

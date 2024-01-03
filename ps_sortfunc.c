@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:19:19 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/03 12:43:26 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:54:01 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	swap_pb(t_stack **stack_a, t_stack **stack_b)
 
 {
 	t_stack *a_ptr = NULL;
-	//t_stack *b_ptr = NULL;
+	t_stack *b_ptr = NULL;
 
 	a_ptr = (*stack_a);
 	(*stack_a) = (*stack_a)->next;
@@ -69,16 +69,32 @@ void	swap_pb(t_stack **stack_a, t_stack **stack_b)
 		(*stack_b)->next = NULL;
 	}
 	else
-	ps_lstadd_front(stack_a, a_ptr);
-/* 	b_ptr = (*stack_b)->next;
+ 	b_ptr = (*stack_b);
 	(*stack_b) = a_ptr;
-	(*stack_b)->next = b_ptr; */
+	(*stack_b)->next = b_ptr; 
 	write(1, "pb\n", 3);
-/* 	*stack_a = a_ptr;
-	b_ptr->next = *stack_b;
-	*stack_b = b_ptr; */
 }  
 
+void	swap_pa(t_stack **stack_a, t_stack **stack_b)
+
+{
+	t_stack *b_ptr = NULL;
+	t_stack *a_ptr = NULL;
+
+	a_ptr = (*stack_b);
+	(*stack_b) = (*stack_b)->next;
+
+	if(*stack_a == NULL)
+	{
+		(*stack_a) = a_ptr;
+		(*stack_a)->next = NULL;
+	}
+	else
+ 	b_ptr = (*stack_a);
+	(*stack_a) = a_ptr;
+	(*stack_a)->next = b_ptr; 
+	write(1, "pb\n", 3);
+}  
 
 /* V.1 The rules
 • You have 2 stacks named a and b.
