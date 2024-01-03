@@ -3,46 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sortfunc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:19:19 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/02 20:56:56 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/03 12:43:26 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*swap_sasb(t_stack **stack_ab)
+void	swap_sa(t_stack **stack_a, int i)
 
 {
 	t_stack *ptr;
+	t_stack *ptr2;
 
+	ptr2 = NULL;
 	ptr = NULL;
-	ptr = (*stack_ab)->next;
-	(*stack_ab)->next = ptr->next;
-	ptr->next = (*stack_ab);
-	return (ptr);
+	ptr = (*stack_a);
+	(*stack_a) = (*stack_a)->next;
+	ptr2 = (*stack_a)->next;
+	(*stack_a)->next = ptr;
+	ptr->next = ptr2;
+	if (i == 1)
+		write(1, "sa\n", 3);
 }
 
-/* void	swap_ss(t_stack *stack_a, t_stack *stack_b)
+void	swap_sb(t_stack **stack_b, int i)
 
 {
-	stack_a = swap_sasb(stack_a);
-	stack_b = swap_sasb(stack_b);
-} */
+	t_stack *ptr;
+	t_stack *ptr2;
+
+	ptr2 = NULL;
+	ptr = NULL;
+	ptr = (*stack_b);
+	(*stack_b) = (*stack_b)->next;
+	ptr2 = (*stack_b)->next;
+	(*stack_b)->next = ptr;
+	ptr->next = ptr2;
+	if (i == 1)
+		write(1, "sb\n", 3);
+}
+
+ void	swap_ss(t_stack **stack_a, t_stack **stack_b)
+
+{
+	swap_sa(stack_a, 0);
+	swap_sb(stack_b, 0);
+	write(1, "ss\n", 3);
+} 
+
 void	swap_pb(t_stack **stack_a, t_stack **stack_b)
 
 {
-	t_stack *a_ptr;
-	t_stack *b_ptr;
+	t_stack *a_ptr = NULL;
+	//t_stack *b_ptr = NULL;
 
-	a_ptr = (*stack_a)->next;
-	b_ptr = *stack_a;
+	a_ptr = (*stack_a);
+	(*stack_a) = (*stack_a)->next;
 
-	*stack_a = a_ptr;
+	if(*stack_b == NULL)
+	{
+		(*stack_b) = a_ptr;
+		(*stack_b)->next = NULL;
+	}
+	else
+	ps_lstadd_front(stack_a, a_ptr);
+/* 	b_ptr = (*stack_b)->next;
+	(*stack_b) = a_ptr;
+	(*stack_b)->next = b_ptr; */
+	write(1, "pb\n", 3);
+/* 	*stack_a = a_ptr;
 	b_ptr->next = *stack_b;
-	*stack_b = b_ptr;
-} 
+	*stack_b = b_ptr; */
+}  
 
 
 /* V.1 The rules

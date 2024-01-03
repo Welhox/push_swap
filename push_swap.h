@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/02 15:50:55 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/03 12:41:08 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int    	arrayfree(char **array);
 int 	oneargcheck(char **array);
 
 //		swapping functions
-t_stack	*swap_sasb(t_stack **stack_a);
-void	swap_ss(t_stack *stack_a, t_stack *stack_b);
+void	swap_sa(t_stack **stack_a, int i);
+void	swap_sb(t_stack **stack_b, int i);
+void	swap_ss(t_stack **stack_a, t_stack **stack_b);
 void	swap_pb(t_stack **stack_a, t_stack **stack_b);
+void	ps_lstadd_front(t_stack **lst, t_stack *new);
 #endif

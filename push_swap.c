@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/02 20:56:55 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/03 12:43:25 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ int ft_makelist(char *argv[], t_stack **stack_a, int argc)
     i = 1;
     if (argc == 2)
         i = 0;
-/*     stack_a->content = ft_atoi(argv[i]);
-    stack_a->next = NULL;
-    i++; */
       while (argv[i])
     {
         number = ft_atoi(argv[i]);
@@ -73,12 +70,12 @@ void   ft_listcheck(t_stack *stack_a, t_stack *stack_b) //DELETE
         aptr = aptr->next;
         ft_printf("A = %d\n", (aptr->content));
     }
-    ft_printf("B = %d\n", (bptr->content));
+     ft_printf("B = %d\n", (bptr->content));
     while (bptr->next)
     {
         bptr = bptr->next;
         ft_printf("B = %d\n", (bptr->content));
-    }
+    } 
 
 }
 
@@ -90,11 +87,6 @@ int main(int argc, char *argv[])
     t_stack  *stack_a = NULL;
     t_stack  *stack_b = NULL;
     char    **array;
-
-  //  stack_a = malloc(sizeof(t_stack));
-  //  stack_b = malloc(sizeof(t_stack));
-  //  stack_b->next = NULL;
-    //these needs to be moved to after argchecks
 
     if (argc == 2)
     {
@@ -121,9 +113,10 @@ int main(int argc, char *argv[])
             return (0);     
     }
 
-    stack_a = swap_sasb(&stack_a);
-    //stack_a = swap_sasb(stack_a);
-    //swap_pb(&stack_a, &stack_b);
+    //swap_sa(&stack_a, 1);
+    //stack_a = swap_sa(&stack_a);
+    swap_pb(&stack_a, &stack_b);
+    swap_pb(&stack_a, &stack_b);
     ft_listcheck(stack_a, stack_b);  
     ft_printf("Great success\n");
     return(0);
