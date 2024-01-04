@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:12:31 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/03 12:41:05 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:15:15 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,22 @@ void	ps_lstadd_back(t_stack **lst, t_stack *new)
 		*lst = new;
 	}
 } 
+
+int	ps_lstsize(t_stack **lst)
+
+{
+	int		counter;
+	t_stack	*ptr;
+
+	ptr = NULL;
+	counter = 0;
+	if (!lst)
+		return (0);
+	ptr = (*lst);
+	while (ptr)
+	{
+		counter++;
+		ptr = ptr->next;
+	}
+	return (counter);
+}

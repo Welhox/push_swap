@@ -6,28 +6,31 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/03 15:51:46 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:15:24 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_index(t_stack *stack)
+void    ft_index(t_stack **stack)
 
 {
-    t_stack *ptr;
-    int i;
-
-    ptr = NULL;
-    i = 2;
-    ptr = stack;
-    ptr->index = 1;
-
-    while(ptr->next)
+    if (*stack)
     {
-        ptr = ptr->next;
-        ptr->index = i;
-        i++;
+        t_stack *ptr;
+        int i;
+
+        ptr = NULL;
+        i = 1;
+        ptr = (*stack);
+        ptr->index = 0;
+
+        while(ptr->next)
+        {
+            ptr = ptr->next;
+            ptr->index = i;
+            i++;
+        }
     }
 
 }
@@ -49,11 +52,12 @@ int ft_makelist(char *argv[], t_stack **stack_a, int argc)
         // malloc check / freeing function
         i++;
     }
+    ft_index(stack_a);
 
     return (1);
 }
 
-void   ft_listcheck(t_stack *stack_a, t_stack *stack_b) //DELETE
+void   ft_listcheck(t_stack **stack_a, t_stack **stack_b) //DELETE
 
 {
     t_stack *aptr;
@@ -62,21 +66,56 @@ void   ft_listcheck(t_stack *stack_a, t_stack *stack_b) //DELETE
     aptr = NULL;
     bptr = NULL;
 
-    aptr = stack_a;
-    bptr = stack_b;
-    ft_printf("A = %d\n", (aptr->content));
-    while (aptr->next)
-    {
-        aptr = aptr->next;
-        ft_printf("A = %d\n", (aptr->content));
+    aptr = (*stack_a);
+    bptr = (*stack_b);
+    ft_printf("Stack A      Stack B\n");
+    ft_printf("--------------------\n");
+    if (aptr)
+        ft_printf("  %d %d    |    ", (aptr->content), (aptr->index));
+    else
+        ft_printf("          |    ");
+    if (bptr)
+        ft_printf("%d %d\n", (bptr->content), (bptr->index));
+    else
+        ft_printf("  \n");
+    while ((aptr && aptr->next) || (bptr && bptr->next))
+    {    
+        if(aptr && aptr->next)
+        {
+            aptr = aptr->next;
+            ft_printf("  %d %d    |    ", (aptr->content), (aptr->index));
+        }
+        else
+            ft_printf("          |    ");    
+        if(bptr && bptr->next)
+        {
+            bptr = bptr->next;
+            ft_printf("%d %d\n", (bptr->content), (bptr->index));
+        }
+        else
+            ft_printf("  \n"); 
     }
-     ft_printf("\nB = %d\n", (bptr->content));
-     
-    while (bptr->next)
+    ft_printf("--------------------\n");   
+}
+
+int ft_sorted(t_stack **stack_a, t_stack **stack_b)
+
+{
+    t_stack *ptr = NULL;
+
+    ptr = (*stack_a);
+
+    if (*stack_a && !*stack_b)
     {
-        bptr = bptr->next;
-        ft_printf("B = %d\n", (bptr->content));
-    } 
+        while (ptr->next)
+        {
+            if (ptr->content > ptr->next->content)
+                return (0);
+            ptr = ptr->next;
+        }
+        return(1);
+    }
+    return(0);
 
 }
 
@@ -114,13 +153,41 @@ int main(int argc, char *argv[])
             return (0);     
     }
 
-    //swap_sa(&stack_a, 1);
-    
+    ft_listcheck(&stack_a, &stack_b);
+    algo_control(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b);
+    //freeing func
+    //if (ft_sorted(&stack_a, &stack_b) == 1)
+    //    ft_printf("sorting completed\n");
+   
+/*     swap_pa(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b);  
     swap_pb(&stack_a, &stack_b);
-    //swap_sa(&stack_a, 1);
+    swap_pb(&stack_a, &stack_b); 
+    ft_listcheck(&stack_a, &stack_b); 
+    swap_sa(&stack_a, 1);
+    ft_listcheck(&stack_a, &stack_b);
     swap_pb(&stack_a, &stack_b);
-    ft_listcheck(stack_a, stack_b);  
-    ft_printf("Great success\n");
+    ft_listcheck(&stack_a, &stack_b);
+    swap_sb(&stack_b, 1);  
+    ft_listcheck(&stack_a, &stack_b);
+    swap_ss(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_pa(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_ra(&stack_a, 1);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_rb(&stack_b, 1);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_rr(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_rra(&stack_a, 1);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_rrb(&stack_b, 1);
+    ft_listcheck(&stack_a, &stack_b);
+    swap_rrr(&stack_a, &stack_b);
+    ft_listcheck(&stack_a, &stack_b); 
+    ft_printf("Great success\n"); */
     return(0);
 }
 

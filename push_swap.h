@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/03 12:41:08 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:42:02 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdbool.h>
+#include <limits.h>
 
 typedef struct s_stack
 {
 	int				content;
 	int				index;
+	int				push_cost;
+	bool			cheapest;
+	bool			above_median;
+	struct s_stack	*target;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -29,14 +35,40 @@ int 	argcheck(int argc, char *argv[]);
 int 	numcheck(char *str);
 t_stack	*ps_lstlast(t_stack *lst);
 t_stack	*ps_lstnew(int content);
+void	ps_lstadd_front(t_stack **lst, t_stack *new);
 void	ps_lstadd_back(t_stack **lst, t_stack *new);
 int    	arrayfree(char **array);
 int 	oneargcheck(char **array);
+void    ft_index(t_stack **stack);
+int 	ft_sorted(t_stack **stack_a, t_stack **stack_b);
+int		ps_lstsize(t_stack **lst);
+int		algo_control(t_stack **stack_a, t_stack **stack_b);
+void	tiny_sort(t_stack **stack_a);
+void	ft_sorter(t_stack **a, t_stack **b);
+int		find_max(t_stack **stack);
+int 	find_min(t_stack **stack);
+void	b_target(t_stack **node, t_stack **b_stack);
+void	a_target(t_stack **node, t_stack **a_stack);
+void	median_check(t_stack **stack);
+void	set_info(t_stack **a, t_stack **b);
+void	push_cost(t_stack **stack);
+void	cheapest(t_stack **stack);
+void	move_to_b(t_stack **a, t_stack **b);
+void	move_to_a(t_stack **a, t_stack **b);
 
 //		swapping functions
 void	swap_sa(t_stack **stack_a, int i);
 void	swap_sb(t_stack **stack_b, int i);
 void	swap_ss(t_stack **stack_a, t_stack **stack_b);
 void	swap_pb(t_stack **stack_a, t_stack **stack_b);
-void	ps_lstadd_front(t_stack **lst, t_stack *new);
+void	swap_pa(t_stack **stack_a, t_stack **stack_b);
+void	swap_ra(t_stack **stack_a, int i);
+void	swap_rb(t_stack **stack_b, int i);
+void	swap_rr(t_stack **stack_a, t_stack **stack_b);
+void	swap_rra(t_stack **stack_a, int i);
+void	swap_rrb(t_stack **stack_b, int i);
+void	swap_rrr(t_stack **stack_a, t_stack **stack_b);
+
+
+void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 #endif

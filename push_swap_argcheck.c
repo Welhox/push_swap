@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_argcheck.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/02 12:58:17 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/04 17:25:06 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int    arrayfree(char **array)
     int i;
 
     i = 0;
-    ft_printf("freeing func activated\n");
+    ft_printf("freeing func activated\n"); //DELETE
     while(array[i])
     {
         free(array[i]);
@@ -78,9 +78,7 @@ int oneargcheck(char *array[])
     int j;
 
     i = 0;
-    //ft_printf("got here\n");
     //check for only ints
-    //ft_printf("first string = %s\n", array[i]);
     while (array[i])
     {
         if (numcheck(array[i]) == 0)
@@ -88,7 +86,6 @@ int oneargcheck(char *array[])
         i++;
     }
     i = 0;
-    //ft_printf("got here\n");
     //check for dupes
     while (array[i])
     {
@@ -101,13 +98,11 @@ int oneargcheck(char *array[])
         }
         i++;
     }
-    //ft_printf("got here\n");
     //check for max/min int
-    //ft_printf("ok here\n");
     i = 0;
     while (array[i])
     {
-        if (ft_pushatoi(array[i]) > 2147483647 || ft_pushatoi(array[i]) < -2147483648)
+        if (ft_pushatoi(array[i]) > INT_MAX || ft_pushatoi(array[i]) < INT_MIN)
             return (arrayfree(array));
         i++;
     }
@@ -157,7 +152,7 @@ int argcheck(int argc, char *argv[])
     i = 1;
     while (argv[i])
     {
-        if (ft_pushatoi(argv[i]) > 2147483647 || ft_pushatoi(argv[i]) < -2147483648)
+        if (ft_pushatoi(argv[i]) > INT_MAX || ft_pushatoi(argv[i]) < INT_MIN)
             return (0);
         i++;
     }
