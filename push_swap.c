@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/04 19:15:24 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:38:49 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,25 @@ int ft_sorted(t_stack **stack_a, t_stack **stack_b)
 
 }
 
+void    lst_clear(t_stack **stack)
+
+{
+    t_stack *ptr;
+    t_stack *ptr2;
+
+    if (*stack)
+    {
+        ptr = *stack;
+        while (ptr->next)
+        {
+        ptr2 = ptr->next;
+        free(ptr);
+        ptr = ptr2;
+        }
+        free (ptr);
+    }
+
+}
 int main(int argc, char *argv[])
 
 {
@@ -136,7 +155,8 @@ int main(int argc, char *argv[])
         if (oneargcheck(array) == 0)
         {
             ft_putendl_fd("Error", 2);
-            return (0);
+            exit (0);
+            //return (0);
         }
         if (ft_makelist(array, &stack_a, argc) == 0)
             return (0);
@@ -147,53 +167,23 @@ int main(int argc, char *argv[])
         if (argcheck(argc, argv) == 0)
         {    
             ft_putendl_fd("Error", 2);
-            return (0);
+            exit (0);
+            //return (0);
         }
         if (ft_makelist(argv, &stack_a, argc) == 0)
             return (0);     
     }
-
-    ft_listcheck(&stack_a, &stack_b);
     algo_control(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);
+    lst_clear(&stack_a);
+    lst_clear(&stack_b);
+    //ft_listcheck(&stack_a, &stack_b);
     //freeing func
     //if (ft_sorted(&stack_a, &stack_b) == 1)
     //    ft_printf("sorting completed\n");
    
-/*     swap_pa(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);  
-    swap_pb(&stack_a, &stack_b);
-    swap_pb(&stack_a, &stack_b); 
-    ft_listcheck(&stack_a, &stack_b); 
-    swap_sa(&stack_a, 1);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_pb(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_sb(&stack_b, 1);  
-    ft_listcheck(&stack_a, &stack_b);
-    swap_ss(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_pa(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_ra(&stack_a, 1);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_rb(&stack_b, 1);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_rr(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_rra(&stack_a, 1);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_rrb(&stack_b, 1);
-    ft_listcheck(&stack_a, &stack_b);
-    swap_rrr(&stack_a, &stack_b);
-    ft_listcheck(&stack_a, &stack_b); 
-    ft_printf("Great success\n"); */
+
     return(0);
 }
-
-
-
-
 
 /* V.1 The rules
 • You have 2 stacks named a and b.

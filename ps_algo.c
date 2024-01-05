@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:18:33 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 19:46:22 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:31:10 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,26 @@ void	set_info(t_stack **a, t_stack **b)
 {
 	t_stack *ptr;
 
-	median_check(a);
-	median_check(b);
-	push_cost(a);
-	push_cost(b);
-	cheapest(a);
-	cheapest(b);
 	ptr = *a;
-	while (ptr->next)
+	while (ptr)
 	{
 		b_target(&ptr, b);
 		ptr = ptr->next;
 	}
 	ptr = *b;
-	while (ptr->next)
+	while (ptr)
 	{
 		a_target(&ptr, a);
 		ptr = ptr->next;
 	}
+	median_check(a);
+	median_check(b);
+	push_cost(a, 0);
+	push_cost(b, 0);
+	push_cost(a, 1);
+	push_cost(b, 1);
+	cheapest(a);
+	cheapest(b);
 }
 
 void	move_to_b(t_stack **a, t_stack **b)
@@ -64,9 +66,9 @@ void	move_to_b(t_stack **a, t_stack **b)
 
 	aptr = *a;
 	bptr = *b;
-	while(aptr->next && aptr->cheapest == false)
+	while(aptr && aptr->cheapest == false)
 		aptr = aptr->next;
-	while(bptr->next && aptr->target != bptr)
+	while(bptr && aptr->target != bptr)
 		bptr = bptr->next;
 	while (aptr->index != 0 && bptr->index != 0)
 	{
@@ -103,9 +105,9 @@ void	move_to_a(t_stack **a, t_stack **b)
 
 	aptr = *a;
 	bptr = *b;
-	while(bptr->next && bptr->cheapest == false)
+	while(bptr && bptr->cheapest == false)
 		bptr = bptr->next;
-	while(aptr->next && bptr->target != aptr)
+	while(aptr && bptr->target != aptr)
 		aptr = aptr->next;
 	while (bptr->index != 0 && aptr->index != 0)
 	{
@@ -119,19 +121,52 @@ void	move_to_a(t_stack **a, t_stack **b)
 	
 	while (aptr->index != 0)
 	{
-		if (bptr->above_median == true)
+		if (aptr->above_median == true)
 			swap_ra(a, 1);
 		else
 			swap_rra(a, 1);
 	}
-		while (aptr->index != 0)
+		while (bptr->index != 0)
 	{
-		if (aptr->above_median == true)
+		if (bptr->above_median == true)
 			swap_rb(b, 1);
 		else
 			swap_rrb(b, 1);
 	}
 	swap_pa(a, b);
+}
+
+void	rotate(t_stack **a)
+
+{
+	t_stack *smallest;
+	t_stack *ptr;
+
+	smallest = find_min(a);
+	ptr = *a;
+
+	while (ptr)
+	{
+		if (ptr == smallest)
+		{
+			if (ptr->above_median == true)
+			{
+				while (ptr->index != 0)
+					swap_ra(a, 1);
+				break;
+			}
+			else
+			{
+				while (ptr->index != 0)
+					swap_rra(a, 1);
+				break;
+			}
+
+		}
+		ptr = ptr->next;
+	}
+
+
 }
 
 void	ft_sorter(t_stack **a, t_stack **b)
@@ -146,14 +181,17 @@ void	ft_sorter(t_stack **a, t_stack **b)
 		set_info(a, b);
 		move_to_b(a, b);
 	}
-	ft_listcheck(a, b); //DELETE
+	//ft_listcheck(a, b); //DELETE
 	tiny_sort(a);
-	ft_listcheck(a, b); //DELETE
+	//ft_listcheck(a, b); //DELETE
 	while (*b)
 	{
 		set_info(a, b);
 		move_to_a(a, b);
+		//ft_listcheck(a, b); //DELETE
 	}
+	median_check(a);
+	rotate(a);
 /* 	while (b)
 	{
 		//move over to a with target

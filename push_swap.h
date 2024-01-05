@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 19:42:02 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:05:32 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,18 @@ int		ps_lstsize(t_stack **lst);
 int		algo_control(t_stack **stack_a, t_stack **stack_b);
 void	tiny_sort(t_stack **stack_a);
 void	ft_sorter(t_stack **a, t_stack **b);
-int		find_max(t_stack **stack);
-int 	find_min(t_stack **stack);
+t_stack	*find_max(t_stack **stack);
+t_stack *find_min(t_stack **stack);
 void	b_target(t_stack **node, t_stack **b_stack);
 void	a_target(t_stack **node, t_stack **a_stack);
 void	median_check(t_stack **stack);
 void	set_info(t_stack **a, t_stack **b);
-void	push_cost(t_stack **stack);
+void	push_cost(t_stack **stack, int i);
 void	cheapest(t_stack **stack);
 void	move_to_b(t_stack **a, t_stack **b);
 void	move_to_a(t_stack **a, t_stack **b);
+void	rotate(t_stack **a);
+void    lst_clear(t_stack **stack);
 
 //		swapping functions
 void	swap_sa(t_stack **stack_a, int i);

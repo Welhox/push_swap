@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:19:19 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 19:42:54 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:38:49 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	swap_sa(t_stack **stack_a, int i)
 		(*stack_a)->index = 0;
 		(*stack_a)->next->index = 1;
 	}
-	else
-		ft_printf("sa tried unsucessfully\n");
 }
 
 void	swap_sb(t_stack **stack_b, int i)
@@ -56,8 +54,6 @@ void	swap_sb(t_stack **stack_b, int i)
 		(*stack_b)->index = 0;
 		(*stack_b)->next->index = 1;
 	}
-	else
-		ft_printf("sb tried unsuccessfully\n");
 }
 
  void	swap_ss(t_stack **stack_a, t_stack **stack_b)
@@ -69,8 +65,6 @@ void	swap_sb(t_stack **stack_b, int i)
 		swap_sb(stack_b, 0);
 		write(1, "ss\n", 3);
 	}
-	else
-		ft_printf("ss tried unsuccessfully\n");
 } 
 
 void	swap_pb(t_stack **stack_a, t_stack **stack_b)
@@ -100,8 +94,6 @@ void	swap_pb(t_stack **stack_a, t_stack **stack_b)
 		ft_index(stack_a);
 		ft_index(stack_b);
 	}
-	else
-		ft_printf("pb tried unsuccessfully\n");
 }  
 
 void	swap_pa(t_stack **stack_a, t_stack **stack_b)
@@ -130,8 +122,6 @@ void	swap_pa(t_stack **stack_a, t_stack **stack_b)
 		ft_index(stack_a);
 		ft_index(stack_b);
 	}
-	else
-		ft_printf("pa tried unsuccessfully\n");
 }  
 
  void	swap_ra(t_stack **stack_a, int i)
@@ -149,8 +139,6 @@ void	swap_pa(t_stack **stack_a, t_stack **stack_b)
 			ft_printf("ra\n");
 		ft_index(stack_a);
 	}
-	else
-		ft_printf("ra tried unsuccessfully\n");
 
 } 
 

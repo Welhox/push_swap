@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:59:27 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 19:15:20 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:32:00 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 			ft_printf("rb\n");
 		ft_index(stack_b);
 	}
-	else
-		ft_printf("rb tried unsuccessfully\n");
-
 } 
 
 void	swap_rr(t_stack **stack_a, t_stack **stack_b)
@@ -41,8 +38,7 @@ void	swap_rr(t_stack **stack_a, t_stack **stack_b)
 		swap_rb(stack_b, 0);
 		write(1, "rr\n", 3);
 	}
-	else
-		ft_printf("rr tried unsuccessfully\n");
+
 } 
 
 void	swap_rra(t_stack **stack_a, int i)
@@ -65,8 +61,6 @@ void	swap_rra(t_stack **stack_a, int i)
 		ft_index(stack_a);
 
 	}
-	else
-		ft_printf("rra tried unsuccessfully\n");
 
 } 
 
@@ -89,8 +83,6 @@ void	swap_rrb(t_stack **stack_b, int i)
 			ft_printf("rrb\n");
 		ft_index(stack_b);
 	}
-	else
-		ft_printf("rrb tried unsuccessfully\n");
 
 } 
 
@@ -103,6 +95,4 @@ void	swap_rrr(t_stack **stack_a, t_stack **stack_b)
 		swap_rrb(stack_b, 0);
 		write(1, "rrr\n", 4);
 	}
-	else
-		ft_printf("rrr tried unsuccessfully\n");
 } 

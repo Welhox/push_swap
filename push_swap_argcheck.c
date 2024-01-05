@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 17:25:06 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:00:14 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int    arrayfree(char **array)
     int i;
 
     i = 0;
-    ft_printf("freeing func activated\n"); //DELETE
     while(array[i])
     {
         free(array[i]);
