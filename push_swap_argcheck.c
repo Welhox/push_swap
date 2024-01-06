@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_argcheck.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 15:00:14 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:37:47 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ long    ft_pushatoi(const char *str)
 	if (str[neg] == '-')
 		num *= -1;
 	return (num);
+}
+
+void    ft_error(char **argv, int argc)
+
+{
+    if (argc == 2)
+        arrayfree(argv);
+    ft_putendl_fd("Error", 2);
+    exit(0);
 }
 
 int numcheck(char *str)
@@ -70,43 +79,6 @@ int    arrayfree(char **array)
     return(0);
 }
 
-int oneargcheck(char *array[])
-
-{
-    int i;
-    int j;
-
-    i = 0;
-    //check for only ints
-    while (array[i])
-    {
-        if (numcheck(array[i]) == 0)
-            return (arrayfree(array));
-        i++;
-    }
-    i = 0;
-    //check for dupes
-    while (array[i])
-    {
-        j = 1;
-        while (array[i + j])
-        {
-            if (ft_strncmp(array[i], array[i + j], 12) == 0)
-                return (arrayfree(array));
-            j++;
-        }
-        i++;
-    }
-    //check for max/min int
-    i = 0;
-    while (array[i])
-    {
-        if (ft_pushatoi(array[i]) > INT_MAX || ft_pushatoi(array[i]) < INT_MIN)
-            return (arrayfree(array));
-        i++;
-    }
-    return (1);
-}
 
 int argcheck(int argc, char *argv[])
 
@@ -115,28 +87,12 @@ int argcheck(int argc, char *argv[])
     int j;
 
     i = 1;
-    if (argc < 2)
-        return (0);
-    /* if (argc == 2)
-    {
-        char    **array;
-        array = ft_split(argv[1], ' ');
-        if (array[1] == NULL)
-            return(arrayfree(array));
-        //ft_printf("first string = %s\n", array[0]);
-        return (oneargcheck(array));
-    } */
-    //check for only ints
-    while (argv[i]) //&& i < argc)
+    if (argc == 2)
+        i = 0;
+    while (argv[i])
     {
         if (numcheck(argv[i]) == 0)
             return (0);
-        i++;
-    }
-    i = 1;
-    //check for dupes
-    while (argv[i])
-    {
         j = 1;
         while (argv[i + j])
         {
@@ -144,13 +100,6 @@ int argcheck(int argc, char *argv[])
                 return (0);
             j++;
         }
-        i++;
-    }
-    //check for max/min int
-    //ft_printf("ok here\n");
-    i = 1;
-    while (argv[i])
-    {
         if (ft_pushatoi(argv[i]) > INT_MAX || ft_pushatoi(argv[i]) < INT_MIN)
             return (0);
         i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 16:05:32 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:48:48 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,44 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+//		argument check & list prepping
+
 long    ft_pushatoi(const char *str);
 int 	argcheck(int argc, char *argv[]);
 int 	numcheck(char *str);
-t_stack	*ps_lstlast(t_stack *lst);
-t_stack	*ps_lstnew(int content);
-void	ps_lstadd_front(t_stack **lst, t_stack *new);
-void	ps_lstadd_back(t_stack **lst, t_stack *new);
 int    	arrayfree(char **array);
-int 	oneargcheck(char **array);
 void    ft_index(t_stack **stack);
 int 	ft_sorted(t_stack **stack_a, t_stack **stack_b);
-int		ps_lstsize(t_stack **lst);
+void    ft_error(char **argv, int argc);
+
+//		sorting algorithm
+
 int		algo_control(t_stack **stack_a, t_stack **stack_b);
 void	tiny_sort(t_stack **stack_a);
 void	ft_sorter(t_stack **a, t_stack **b);
+void	rotate(t_stack **a);
+void	push_cost(t_stack **stack, int i);
+void	cheapest(t_stack **stack);
+void	move_to_b(t_stack **a, t_stack **b);
+void	move_to_a(t_stack **a, t_stack **b);
 t_stack	*find_max(t_stack **stack);
 t_stack *find_min(t_stack **stack);
 void	b_target(t_stack **node, t_stack **b_stack);
 void	a_target(t_stack **node, t_stack **a_stack);
 void	median_check(t_stack **stack);
 void	set_info(t_stack **a, t_stack **b);
-void	push_cost(t_stack **stack, int i);
-void	cheapest(t_stack **stack);
-void	move_to_b(t_stack **a, t_stack **b);
-void	move_to_a(t_stack **a, t_stack **b);
-void	rotate(t_stack **a);
+
+//		lst manipulation functions
+
+void	ps_lstadd_front(t_stack **lst, t_stack *new);
+void	ps_lstadd_back(t_stack **lst, t_stack *new);
+int		ps_lstsize(t_stack **lst);
+t_stack	*ps_lstlast(t_stack *lst);
+t_stack	*ps_lstnew(int content);
 void    lst_clear(t_stack **stack);
 
 //		swapping functions
+
 void	swap_sa(t_stack **stack_a, int i);
 void	swap_sb(t_stack **stack_b, int i);
 void	swap_ss(t_stack **stack_a, t_stack **stack_b);
@@ -72,5 +81,5 @@ void	swap_rrb(t_stack **stack_b, int i);
 void	swap_rrr(t_stack **stack_a, t_stack **stack_b);
 
 
-void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
+//void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 #endif
