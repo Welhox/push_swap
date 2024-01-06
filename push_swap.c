@@ -6,7 +6,7 @@
 /*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/06 12:36:13 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/06 13:09:00 by welhox           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,47 +55,6 @@ int ft_makelist(char *argv[], t_stack **stack_a, int argc)
     ft_index(stack_a);
 
     return (1);
-}
-
-void   ft_listcheck(t_stack **stack_a, t_stack **stack_b) //DELETE
-
-{
-    t_stack *aptr;
-    t_stack *bptr;
-
-    aptr = NULL;
-    bptr = NULL;
-
-    aptr = (*stack_a);
-    bptr = (*stack_b);
-    ft_printf("Stack A      Stack B\n");
-    ft_printf("--------------------\n");
-    if (aptr)
-        ft_printf("  %d %d    |    ", (aptr->content), (aptr->index));
-    else
-        ft_printf("          |    ");
-    if (bptr)
-        ft_printf("%d %d\n", (bptr->content), (bptr->index));
-    else
-        ft_printf("  \n");
-    while ((aptr && aptr->next) || (bptr && bptr->next))
-    {    
-        if(aptr && aptr->next)
-        {
-            aptr = aptr->next;
-            ft_printf("  %d %d    |    ", (aptr->content), (aptr->index));
-        }
-        else
-            ft_printf("          |    ");    
-        if(bptr && bptr->next)
-        {
-            bptr = bptr->next;
-            ft_printf("%d %d\n", (bptr->content), (bptr->index));
-        }
-        else
-            ft_printf("  \n"); 
-    }
-    ft_printf("--------------------\n");   
 }
 
 int ft_sorted(t_stack **stack_a, t_stack **stack_b)
@@ -160,8 +119,6 @@ int main(int argc, char *argv[])
     //ft_listcheck(&stack_a, &stack_b);
     //if (ft_sorted(&stack_a, &stack_b) == 1)
     //    ft_printf("sorting completed\n");
-   
-
     return(0);
 }
 
