@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:45:23 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 15:30:18 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:48:25 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	b_target(t_stack **node, t_stack **b_stack)
 	target_node = find_max(b_stack);
 	while (ptr)
 	{
-		if (ptr->content < (*node)->content && ptr->content > target_size )
+		if (ptr->content < (*node)->content && ptr->content >= target_size )
 		{	
 			target_size = ptr->content;
 			target_node = ptr;
@@ -94,7 +94,7 @@ void	a_target(t_stack **node, t_stack **a_stack)
 	target_node = find_min(a_stack);
 	while (ptr)
 	{
-		if (ptr->content > (*node)->content && ptr->content < target_size)
+		if (ptr->content > (*node)->content && ptr->content <= target_size)
 		{	
 			target_size = ptr->content;
 			target_node = ptr;
@@ -115,10 +115,11 @@ void	median_check(t_stack **stack)
 	median = ps_lstsize(stack) / 2;
 	while (ptr)
 	{
-		if (ptr->index < median)
+		if (ptr->index <= median)
 			ptr->above_median = true;
 		else
 			ptr->above_median = false;
+		ptr->med = median;
 		ptr = ptr->next;
 	}
 }

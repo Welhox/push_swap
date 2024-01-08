@@ -6,12 +6,12 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:18:33 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 15:31:10 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:44:03 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 void	tiny_sort(t_stack **a)
 
 {
@@ -76,10 +76,20 @@ void	move_to_b(t_stack **a, t_stack **b)
 			swap_rr(a, b);
 		else if (aptr->above_median == false && bptr->above_median == false)
 			swap_rrr(a, b);
+		else if (aptr->above_median == true && (aptr->index >= bptr->index - bptr->med))
+		//{
+		//	swap_rr(a, b);
+			bptr->above_median = true;
+		//}
+		else if (aptr->above_median == false && (aptr->index <= bptr->index - bptr->med))
+		//{
+		//	swap_rrr(a, b);	
+			bptr->above_median = false;
+		//}
 		else
 			break;
 	}
-	
+	median_check(b);
 	while (aptr->index != 0)
 	{
 		if (aptr->above_median == true)
@@ -115,10 +125,20 @@ void	move_to_a(t_stack **a, t_stack **b)
 			swap_rr(a, b);
 		else if (bptr->above_median == false && aptr->above_median == false)
 			swap_rrr(a, b);
+		else if (bptr->above_median == true && (bptr->index >= aptr->index - aptr->med))
+		//{
+		//	swap_rr(a, b);
+			aptr->above_median = true;
+		//}
+		else if (bptr->above_median == false && (bptr->index <= aptr->index - aptr->med))
+		//{	
+		//	swap_rrr(a, b);	
+			aptr->above_median = false;
+		//}
 		else
 			break;
 	}
-	
+	//median_check(a);
 	while (aptr->index != 0)
 	{
 		if (aptr->above_median == true)

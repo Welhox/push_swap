@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   FT_graphic_output.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:06:03 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/06 13:08:57 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/08 14:18:36 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
  void   ft_listcheck(t_stack **stack_a, t_stack **stack_b) //DELETE
 
