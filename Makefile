@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/01/08 14:19:19 by clundber         ###   ########.fr        #
+#    Updated: 2024/01/09 14:41:16 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT_DIR = ./libft
 #SRC_FLS = $(LIBFT_FLS) $(FT_PRINTF_FLS) $(GNL_FLS)
 
 CFILES = push_swap.c push_swap_argcheck.c push_swap_lst.c ps_sortfunc.c ps_sortfunc2.c \
-	ps_algo.c ps_sort_utils.c FT_graphic_output.c
+	ps_algo.c ps_sort_utils.c FT_graphic_output.c ps_sortfunc3.c ps_push.c
 
 OFILES = $(CFILES:.c=.o)
 

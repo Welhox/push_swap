@@ -6,164 +6,124 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/08 16:55:17 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:51:52 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 
-void    ft_index(t_stack **stack)
+void	ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 
-{
-    if (*stack)
-    {
-        t_stack *ptr;
-        int i;
-
-        ptr = NULL;
-        i = 1;
-        ptr = (*stack);
-        ptr->index = 0;
-
-        while(ptr->next)
-        {
-            ptr = ptr->next;
-            ptr->index = i;
-            i++;
-        }
-    }
-
-}
-
-int ft_makelist(char *argv[], t_stack **stack_a, int argc)
+void	ft_index(t_stack **stack)
 
 {
-    int i;
-    int number;
+	t_stack	*ptr;
+	int		i;
 
-    number = 0;
-    i = 1;
-    if (argc == 2)
-        i = 0;
-      while (argv[i])
-    {
-        number = ft_atoi(argv[i]);
-        ps_lstadd_back(stack_a, ps_lstnew(number));
-        // malloc check / freeing function
-        i++;
-    }
-    ft_index(stack_a);
-
-    return (1);
+	if (*stack)
+	{
+		ptr = NULL;
+		i = 1;
+		ptr = (*stack);
+		ptr->index = 0;
+		while (ptr->next)
+		{
+			ptr = ptr->next;
+			ptr->index = i;
+			i++;
+		}
+	}
 }
 
-int ft_sorted(t_stack **stack_a, t_stack **stack_b)
+int	ft_makelist(char *argv[], t_stack **stack_a, int argc)
 
 {
-    t_stack *ptr = NULL;
+	int	i;
+	int	number;
 
-    ptr = (*stack_a);
-
-    if (*stack_a && !*stack_b)
-    {
-        while (ptr->next)
-        {
-            if (ptr->content > ptr->next->content)
-                return (0);
-            ptr = ptr->next;
-        }
-        return(1);
-    }
-    return(0);
-
+	number = 0;
+	i = 1;
+	if (argc == 2)
+		i = 0;
+	while (argv[i])
+	{
+		number = ft_atoi(argv[i]);
+		if (ps_lstadd_back(stack_a, ps_lstnew(number)) == 0)
+		{
+			lst_clear(stack_a);
+			arrayfree(argv);
+			write(2, "malloc failed\n", 14);
+			exit(0);
+		}
+		i++;
+	}
+	ft_index(stack_a);
+	return (1);
 }
 
-void    lst_clear(t_stack **stack)
+int	ft_sorted(t_stack **stack_a, t_stack **stack_b)
 
 {
-    t_stack *ptr;
-    t_stack *ptr2;
+	t_stack	*ptr;
 
-    if (*stack)
-    {
-        ptr = *stack;
-        while (ptr->next)
-        {
-        ptr2 = ptr->next;
-        free(ptr);
-        ptr = ptr2;
-        }
-        free (ptr);
-    }
-
+	ptr = NULL;
+	ptr = (*stack_a);
+	if (*stack_a && !*stack_b)
+	{
+		while (ptr->next)
+		{
+			if (ptr->content > ptr->next->content)
+				return (0);
+			ptr = ptr->next;
+		}
+		return (1);
+	}
+	return (0);
 }
 
-int main(int argc, char *argv[])
+void	lst_clear(t_stack **stack)
 
 {
-    t_stack  *stack_a = NULL;
-    t_stack  *stack_b = NULL;
-    if (argc < 2)
-        return(0);
-    if (argc == 2)
-        argv = ft_split(argv[1], ' ');
-    if (argv[1] == NULL || argcheck(argc, argv) == 0)
-        ft_error(argv, argc);
-    if (ft_makelist(argv, &stack_a, argc) == 0)
-        return (0);
-    if (argc == 2)
-        arrayfree(argv);  
-    //ft_listcheck(&stack_a, &stack_b);
-    algo_control(&stack_a, &stack_b);
-    //ft_listcheck(&stack_a, &stack_b);
-    lst_clear(&stack_a);
-    lst_clear(&stack_b);
-    //if (ft_sorted(&stack_a, &stack_b) == 1)
-    //    ft_printf("sorting completed\n");
-    return(0);
+	t_stack	*ptr;
+	t_stack	*ptr2;
+
+	if (*stack)
+	{
+		ptr = *stack;
+		while (ptr->next)
+		{
+			ptr2 = ptr->next;
+			free(ptr);
+			ptr = ptr2;
+		}
+		free (ptr);
+	}
 }
 
-/* V.1 The rules
-• You have 2 stacks named a and b.
-• At the beginning:
-◦ The stack a contains a random amount of negative and/or positive numbers
-which cannot be duplicated.
-◦ The stack b is empty.
-• The goal is to sort in ascending order numbers into stack a. To do so you have the
-following operations at your disposal:
+int	main(int argc, char *argv[])
 
-sa (swap a): Swap the first 2 elements at the top of stack a.
-Do nothing if there is only one or no elements.
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-sb (swap b): Swap the first 2 elements at the top of stack b.
-Do nothing if there is only one or no elements.
-
-ss : sa and sb at the same time.
-
-pa (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
-
-pb (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
-
-ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-
-rb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-
-rr : ra and rb at the same time.
-
-rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-
-rrr : rra and rrb at the same time. */
-
-/* • read, write, malloc, free,
-exit
-• ft_printf and any equivalent
-YOU coded */
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc < 2)
+		return (0);
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	if (argcheck(argc, argv) == 0)
+		ft_error(argv, argc);
+	if ((argv[1] == NULL || argv[0] == NULL) && argc == 2)
+		return (arrayfree(argv));
+	if (ft_makelist(argv, &stack_a, argc) == 0)
+		return (0);
+	if (argc == 2)
+		arrayfree(argv);
+	//ft_listcheck(&stack_a, &stack_b);
+	algo_control(&stack_a, &stack_b);
+	//ft_listcheck(&stack_a, &stack_b);
+	lst_clear(&stack_a);
+	lst_clear(&stack_b);
+	return (0);
+}

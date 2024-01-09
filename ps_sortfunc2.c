@@ -6,19 +6,20 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:59:27 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 16:32:00 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:23:46 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
- void	swap_rb(t_stack **stack_b, int i)
+void	swap_rb(t_stack **stack_b, int i)
 
 {
+	t_stack	*b_ptr;
+
 	if (*stack_b)
 	{
-		t_stack *b_ptr = NULL;
-
+		b_ptr = NULL;
 		b_ptr = (*stack_b);
 		(*stack_b) = (*stack_b)->next;
 		ps_lstadd_back(stack_b, b_ptr);
@@ -27,7 +28,7 @@
 			ft_printf("rb\n");
 		ft_index(stack_b);
 	}
-} 
+}
 
 void	swap_rr(t_stack **stack_a, t_stack **stack_b)
 
@@ -38,17 +39,18 @@ void	swap_rr(t_stack **stack_a, t_stack **stack_b)
 		swap_rb(stack_b, 0);
 		write(1, "rr\n", 3);
 	}
-
-} 
+}
 
 void	swap_rra(t_stack **stack_a, int i)
 
 {
+	t_stack	*a_ptr;
+	t_stack	*a2_ptr;
+
 	if (*stack_a)
 	{
-		t_stack *a_ptr = NULL;
-		t_stack *a2_ptr = NULL;
-
+		a_ptr = NULL;
+		a2_ptr = NULL;
 		a_ptr = (*stack_a);
 		a2_ptr = (*stack_a);
 		(*stack_a) = ps_lstlast(*stack_a);
@@ -59,19 +61,19 @@ void	swap_rra(t_stack **stack_a, int i)
 		if (i == 1)
 			ft_printf("rra\n");
 		ft_index(stack_a);
-
 	}
-
-} 
+}
 
 void	swap_rrb(t_stack **stack_b, int i)
 
 {
+	t_stack	*b_ptr;
+	t_stack	*b2_ptr;
+
 	if (*stack_b)
 	{
-		t_stack *b_ptr = NULL;
-		t_stack *b2_ptr = NULL;
-
+		b_ptr = NULL;
+		b2_ptr = NULL;
 		b_ptr = (*stack_b);
 		b2_ptr = (*stack_b);
 		(*stack_b) = ps_lstlast(*stack_b);
@@ -83,16 +85,15 @@ void	swap_rrb(t_stack **stack_b, int i)
 			ft_printf("rrb\n");
 		ft_index(stack_b);
 	}
-
-} 
+}
 
 void	swap_rrr(t_stack **stack_a, t_stack **stack_b)
 
 {
-	if (*stack_a && *stack_b) 
+	if (*stack_a && *stack_b)
 	{
 		swap_rra(stack_a, 0);
 		swap_rrb(stack_b, 0);
 		write(1, "rrr\n", 4);
 	}
-} 
+}

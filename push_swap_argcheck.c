@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_argcheck.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welhox <welhox@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/06 12:37:47 by welhox           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:04 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long    ft_pushatoi(const char *str)
+long	ft_pushatoi(const char *str)
 
 {
-	long 	num;
-	int			i;
-	int			neg;
+	long	num;
+	int		i;
+	int		neg;
 
 	i = 0;
 	num = 0;
@@ -36,73 +36,71 @@ long    ft_pushatoi(const char *str)
 	return (num);
 }
 
-void    ft_error(char **argv, int argc)
+void	ft_error(char **argv, int argc)
 
 {
-    if (argc == 2)
-        arrayfree(argv);
-    ft_putendl_fd("Error", 2);
-    exit(0);
+	if (argc == 2)
+		arrayfree(argv);
+	ft_putendl_fd("Error", 2);
+	exit(0);
 }
 
-int numcheck(char *str)
+int	numcheck(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!str || !str[0])
-        return (0);
-    if (str[1] != '\0' && (str[0] == '-' || str[0] == '+'))
-        i++;
-    while (str[i])
-    {
-        if (ft_isdigit(str[i]) == 0)
-            return (0);   
-        i++;
-    }
-    return (1);
-
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	if (str[1] != '\0' && (str[0] == '-' || str[0] == '+'))
+		i++;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int    arrayfree(char **array)
+int	arrayfree(char **array)
 
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(array[i])
-    {
-        free(array[i]);
-        i++;
-    }
-    free (array);
-    return(0);
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free (array);
+	return (0);
 }
 
-
-int argcheck(int argc, char *argv[])
+int	argcheck(int argc, char *argv[])
 
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 1;
-    if (argc == 2)
-        i = 0;
-    while (argv[i])
-    {
-        if (numcheck(argv[i]) == 0)
-            return (0);
-        j = 1;
-        while (argv[i + j])
-        {
-            if (ft_strncmp(argv[i], argv[i + j], 12) == 0)
-                return (0);
-            j++;
-        }
-        if (ft_pushatoi(argv[i]) > INT_MAX || ft_pushatoi(argv[i]) < INT_MIN)
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 1;
+	if (argc == 2)
+		i = 0;
+	while (argv[i])
+	{
+		if (numcheck(argv[i]) == 0)
+			return (0);
+		j = 1;
+		while (argv[i + j])
+		{
+			if (ft_strncmp(argv[i], argv[i + j], 12) == 0)
+				return (0);
+			j++;
+		}
+		if (ft_pushatoi(argv[i]) > INT_MAX || ft_pushatoi(argv[i]) < INT_MIN)
+			return (0);
+		i++;
+	}
+	return (1);
 }

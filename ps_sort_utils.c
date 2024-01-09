@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:45:23 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/08 15:48:25 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:13:42 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_stack	*find_max(t_stack **stack)
 
 {
-	int	max;
-	t_stack *ptr;
+	int		max;
+	t_stack	*ptr;
 
 	ptr = *stack;
 	max = INT_MIN;
@@ -30,17 +30,17 @@ t_stack	*find_max(t_stack **stack)
 	while (ptr)
 	{
 		if (ptr->content == max)
-			break;
+			break ;
 		ptr = ptr->next;
 	}
 	return (ptr);
 }
 
-t_stack *find_min(t_stack **stack)
+t_stack	*find_min(t_stack **stack)
 
 {
-	int	min;
-	t_stack *ptr;
+	int		min;
+	t_stack	*ptr;
 
 	ptr = *stack;
 	min = INT_MAX;
@@ -54,7 +54,7 @@ t_stack *find_min(t_stack **stack)
 	while (ptr)
 	{
 		if (ptr->content == min)
-			break;
+			break ;
 		ptr = ptr->next;
 	}
 	return (ptr);
@@ -63,17 +63,17 @@ t_stack *find_min(t_stack **stack)
 void	b_target(t_stack **node, t_stack **b_stack)
 
 {
-	int	target_size;
-	t_stack *ptr;
-	t_stack *target_node;
+	int		target_size;
+	t_stack	*ptr;
+	t_stack	*target_node;
 
 	ptr = *b_stack;
 	target_size = INT_MIN;
 	target_node = find_max(b_stack);
 	while (ptr)
 	{
-		if (ptr->content < (*node)->content && ptr->content >= target_size )
-		{	
+		if (ptr->content < (*node)->content && ptr->content >= target_size)
+		{
 			target_size = ptr->content;
 			target_node = ptr;
 		}
@@ -85,9 +85,9 @@ void	b_target(t_stack **node, t_stack **b_stack)
 void	a_target(t_stack **node, t_stack **a_stack)
 
 {
-	int	target_size;
-	t_stack *ptr;
-	t_stack *target_node;
+	int		target_size;
+	t_stack	*ptr;
+	t_stack	*target_node;
 
 	ptr = *a_stack;
 	target_size = INT_MAX;
@@ -95,7 +95,7 @@ void	a_target(t_stack **node, t_stack **a_stack)
 	while (ptr)
 	{
 		if (ptr->content > (*node)->content && ptr->content <= target_size)
-		{	
+		{
 			target_size = ptr->content;
 			target_node = ptr;
 		}
@@ -107,8 +107,8 @@ void	a_target(t_stack **node, t_stack **a_stack)
 void	median_check(t_stack **stack)
 
 {
-	int	median;
-	t_stack *ptr;
+	int		median;
+	t_stack	*ptr;
 
 	ptr = *stack;
 	median = 0;
@@ -127,7 +127,7 @@ void	median_check(t_stack **stack)
 void	push_cost(t_stack **stack, int i)
 
 {
-	t_stack *ptr;
+	t_stack	*ptr;
 
 	ptr = *stack;
 	if (i == 0)
@@ -137,7 +137,7 @@ void	push_cost(t_stack **stack, int i)
 			if (ptr->above_median == true)
 				ptr->push_cost = ptr->index;
 			else
-				ptr->push_cost = ps_lstsize(stack) - ptr->index; 
+				ptr->push_cost = ps_lstsize(stack) - ptr->index;
 			ptr = ptr->next;
 		}
 	}
@@ -149,13 +149,12 @@ void	push_cost(t_stack **stack, int i)
 			ptr = ptr->next;
 		}
 	}
-
 }
 
 void	cheapest(t_stack **stack)
 
 {
-	t_stack *ptr;
+	t_stack	*ptr;
 	int		spot;
 	int		cost;
 

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:12:31 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/04 19:15:15 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:01:14 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,19 @@ t_stack	*ps_lstnew(int content)
 	return (new_node);
 }
 
-void	ps_lstadd_back(t_stack **lst, t_stack *new)
+int	ps_lstadd_back(t_stack **lst, t_stack *new)
 
 {
+	if (!new)
+		return (0);
 	if (*lst)
 		ps_lstlast(*lst)->next = new;
 	else
 		*lst = new;
+	return (1);
 }
 
- void	ps_lstadd_front(t_stack **lst, t_stack *new)
+void	ps_lstadd_front(t_stack **lst, t_stack *new)
 
 {
 	if (lst && new)
@@ -56,7 +59,7 @@ void	ps_lstadd_back(t_stack **lst, t_stack *new)
 		new->next = *lst;
 		*lst = new;
 	}
-} 
+}
 
 int	ps_lstsize(t_stack **lst)
 

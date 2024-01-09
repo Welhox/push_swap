@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/08 15:47:57 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:07:50 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	set_info(t_stack **a, t_stack **b);
 //		lst manipulation functions
 
 void	ps_lstadd_front(t_stack **lst, t_stack *new);
-void	ps_lstadd_back(t_stack **lst, t_stack *new);
+int		ps_lstadd_back(t_stack **lst, t_stack *new);
 int		ps_lstsize(t_stack **lst);
 t_stack	*ps_lstlast(t_stack *lst);
 t_stack	*ps_lstnew(int content);
@@ -81,6 +81,10 @@ void	swap_rra(t_stack **stack_a, int i);
 void	swap_rrb(t_stack **stack_b, int i);
 void	swap_rrr(t_stack **stack_a, t_stack **stack_b);
 
-
+void	dual_rotate_a(t_stack *aptr, t_stack *bptr, t_stack **a, t_stack **b);
+void	dual_rotate_b(t_stack *aptr, t_stack *bptr, t_stack **a, t_stack **b);
+void	single_rotate(t_stack *aptr, t_stack *bptr, t_stack **a, t_stack **b);
+//void	single_rotate_a(t_stack *aptr, t_stack **a);
+//void	single_rotate_b(t_stack *bptr, t_stack **b);
 //void   ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 #endif

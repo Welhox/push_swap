@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:19:19 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/05 17:16:11 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:18:48 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	swap_sa(t_stack **stack_a, int i)
 
 {
+	t_stack	*ptr;
+	t_stack	*ptr2;
+
 	if (*stack_a)
 	{
-		t_stack *ptr;
-		t_stack *ptr2;
-
 		ptr2 = NULL;
 		ptr = NULL;
 		ptr = (*stack_a);
@@ -37,11 +37,11 @@ void	swap_sa(t_stack **stack_a, int i)
 void	swap_sb(t_stack **stack_b, int i)
 
 {
+	t_stack	*ptr;
+	t_stack	*ptr2;
+
 	if (*stack_b)
 	{
-		t_stack *ptr;
-		t_stack *ptr2;
-
 		ptr2 = NULL;
 		ptr = NULL;
 		ptr = (*stack_b);
@@ -56,7 +56,7 @@ void	swap_sb(t_stack **stack_b, int i)
 	}
 }
 
- void	swap_ss(t_stack **stack_a, t_stack **stack_b)
+void	swap_ss(t_stack **stack_a, t_stack **stack_b)
 
 {
 	if (*stack_a && *stack_b)
@@ -65,124 +65,60 @@ void	swap_sb(t_stack **stack_b, int i)
 		swap_sb(stack_b, 0);
 		write(1, "ss\n", 3);
 	}
-} 
+}
 
 void	swap_pb(t_stack **stack_a, t_stack **stack_b)
 
 {
+	t_stack	*a_ptr;
+	t_stack	*b_ptr;
+
 	if (*stack_a)
 	{
-		t_stack *a_ptr = NULL;
-		t_stack *b_ptr = NULL;
-
 		a_ptr = (*stack_a);
 		(*stack_a) = (*stack_a)->next;
-
-		if(*stack_b == NULL)
+		if (*stack_b == NULL)
 		{
 			(*stack_b) = a_ptr;
 			(*stack_b)->next = NULL;
 		}
 		else
 		{
- 			b_ptr = (*stack_b);
+			b_ptr = (*stack_b);
 			(*stack_b) = a_ptr;
-			(*stack_b)->next = b_ptr; 
+			(*stack_b)->next = b_ptr;
 		}
-		
 		write(1, "pb\n", 3);
 		ft_index(stack_a);
 		ft_index(stack_b);
 	}
-}  
+}
 
 void	swap_pa(t_stack **stack_a, t_stack **stack_b)
 
 {
+	t_stack	*b_ptr;
+	t_stack	*a_ptr;
+
 	if (*stack_b)
 	{
-		t_stack *b_ptr = NULL;
-		t_stack *a_ptr = NULL;
-
+		a_ptr = NULL;
+		b_ptr = NULL;
 		a_ptr = (*stack_b);
 		(*stack_b) = (*stack_b)->next;
-
-		if(*stack_a == NULL)
+		if (*stack_a == NULL)
 		{
 			(*stack_a) = a_ptr;
 			(*stack_a)->next = NULL;
 		}
 		else
 		{
- 			b_ptr = (*stack_a);
+			b_ptr = (*stack_a);
 			(*stack_a) = a_ptr;
-			(*stack_a)->next = b_ptr; 
+			(*stack_a)->next = b_ptr;
 		}
 		write(1, "pa\n", 3);
 		ft_index(stack_a);
 		ft_index(stack_b);
 	}
-}  
-
- void	swap_ra(t_stack **stack_a, int i)
-
-{
-	if (*stack_a)
-	{
-		t_stack *a_ptr = NULL;
-
-		a_ptr = (*stack_a);
-		(*stack_a) = (*stack_a)->next;
-		ps_lstadd_back(stack_a, a_ptr);
-		a_ptr->next = NULL;
-		if (i == 1)
-			ft_printf("ra\n");
-		ft_index(stack_a);
-	}
-
-} 
-
-
-/* V.1 The rules
-• You have 2 stacks named a and b.
-• At the beginning:
-◦ The stack a contains a random amount of negative and/or positive numbers
-which cannot be duplicated.
-◦ The stack b is empty.
-• The goal is to sort in ascending order numbers into stack a. To do so you have the
-following operations at your disposal:
-
-XX sa (swap a): Swap the first 2 elements at the top of stack a.
-Do nothing if there is only one or no elements.
-
-XX sb (swap b): Swap the first 2 elements at the top of stack b.
-Do nothing if there is only one or no elements.
-
-XX ss : sa and sb at the same time.
-
-XX pa (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
-
-XX pb (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
-
-XX ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-
-XXrb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-
-XXrr : ra and rb at the same time.
-
-rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-
-rrr : rra and rrb at the same time. */
-
-/* • read, write, malloc, free,
-exit
-• ft_printf and any equivalent
-YOU coded */
+}
