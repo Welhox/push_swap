@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:18:33 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/09 14:40:51 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:03:00 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ void	set_info(t_stack **a, t_stack **b)
 	median_check(b);
 	push_cost(a, 0);
 	push_cost(b, 0);
-	push_cost(a, 1);
-	push_cost(b, 1);
-	cheapest(a);
-	cheapest(b);
 }
 
 void	rotate(t_stack **a)
@@ -99,12 +95,16 @@ void	ft_sorter(t_stack **a, t_stack **b)
 	while (ps_lstsize(a) > 3)
 	{
 		set_info(a, b);
+		push_cost(a, 1);
+		cheapest(a);
 		move_to_b(a, b);
 	}
 	tiny_sort(a);
 	while (*b)
 	{
 		set_info(a, b);
+		push_cost(b, 1);
+		cheapest(b);
 		move_to_a(a, b);
 	}
 	median_check(a);

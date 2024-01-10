@@ -6,32 +6,23 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/01/09 14:41:16 by clundber         ###   ########.fr        #
+#    Updated: 2024/01/10 17:29:26 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # ------------ PROJECT -------#
 NAME = push_swap
 LIBFTNAME = libft.a
 # ------------ DIRECTORIES ---#
 LIBFT_DIR = ./libft
-#SRC_DIR = srcs
-#LIBFT_DIR = libft/includes
-##FT_PRINTF_DIR = srcs/ft_printf
-#GNL_DIR = srcs/get_next_line
 
 #------------- SOURCE FILES ------#
-
-#SRC_FLS = $(LIBFT_FLS) $(FT_PRINTF_FLS) $(GNL_FLS)
-
-CFILES = push_swap.c push_swap_argcheck.c push_swap_lst.c ps_sortfunc.c ps_sortfunc2.c \
-	ps_algo.c ps_sort_utils.c FT_graphic_output.c ps_sortfunc3.c ps_push.c
+CFILES = push_swap.c ps_argument.c ps_lst.c ps_swap_functions.c ps_swap_functions2.c \
+	ps_algo.c ps_sort_utils.c ps_sort_utils2.c ps_push.c
 
 OFILES = $(CFILES:.c=.o)
 
-
-#--------- FLAGS ----------
+#--------- FLAGS ----------#
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I includes
@@ -41,9 +32,6 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	@make -C libft
 	$(CC) $(CFLAGS) $(OFILES) $(LIBFT_DIR)/$(LIBFTNAME) -o $(NAME)
-#	ar rcs $(NAME) $(OFILES) 
-#	$(LIBFT_DIR)/$(LIBFTNAME)
-	
 	
 clean:
 	rm -f $(OFILES) 

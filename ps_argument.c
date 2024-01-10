@@ -6,13 +6,13 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 11:55:44 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/09 12:00:04 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:44:01 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_pushatoi(const char *str)
+long	ft_atol(const char *str)
 
 {
 	long	num;
@@ -98,7 +98,7 @@ int	argcheck(int argc, char *argv[])
 				return (0);
 			j++;
 		}
-		if (ft_pushatoi(argv[i]) > INT_MAX || ft_pushatoi(argv[i]) < INT_MIN)
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
 			return (0);
 		i++;
 	}

@@ -6,13 +6,11 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:29 by welhox            #+#    #+#             */
-/*   Updated: 2024/01/09 13:51:52 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:38:45 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 
 void	ft_index(t_stack **stack)
 
@@ -120,9 +118,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (argc == 2)
 		arrayfree(argv);
-	//ft_listcheck(&stack_a, &stack_b);
 	algo_control(&stack_a, &stack_b);
-	//ft_listcheck(&stack_a, &stack_b);
 	lst_clear(&stack_a);
 	lst_clear(&stack_b);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:58:07 by clundber          #+#    #+#             */
-/*   Updated: 2023/12/21 12:39:50 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:42:31 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "ft_printf.h"
-#include "get_next_line.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {

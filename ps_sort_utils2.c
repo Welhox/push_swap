@@ -6,7 +6,7 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:52:46 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/09 14:19:26 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:10:23 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,61 @@ void	swap_ra(t_stack **stack_a, int i)
 		if (i == 1)
 			ft_printf("ra\n");
 		ft_index(stack_a);
+	}
+}
+
+void	push_cost(t_stack **stack, int i)
+
+{
+	t_stack	*ptr;
+
+	ptr = *stack;
+	if (i == 0)
+	{
+		while (ptr)
+		{
+			if (ptr->above_median == true)
+				ptr->push_cost = ptr->index;
+			else
+				ptr->push_cost = ps_lstsize(stack) - ptr->index;
+			ptr = ptr->next;
+		}
+	}
+	else
+	{
+		while (ptr)
+		{
+			ptr->push_cost += ptr->target->push_cost;
+			ptr = ptr->next;
+		}
+	}
+}
+
+void	cheapest(t_stack **stack)
+
+{
+	t_stack	*ptr;
+	int		spot;
+	int		cost;
+
+	cost = INT_MAX;
+	spot = 0;
+	ptr = *stack;
+	while (ptr)
+	{
+		ptr->cheapest = false;
+		if (ptr->push_cost < cost)
+		{
+			cost = ptr->push_cost;
+			spot = ptr->index;
+		}
+		ptr = ptr->next;
+	}
+	ptr = *stack;
+	while (ptr)
+	{
+		if (ptr->index == spot)
+			ptr->cheapest = true;
+		ptr = ptr->next;
 	}
 }
