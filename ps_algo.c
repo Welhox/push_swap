@@ -6,13 +6,11 @@
 /*   By: clundber <clundber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:18:33 by clundber          #+#    #+#             */
-/*   Updated: 2024/01/10 17:03:00 by clundber         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:59:10 by clundber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_listcheck(t_stack **stack_a, t_stack **stack_b); //DELETE
 
 void	tiny_sort(t_stack **a)
 
