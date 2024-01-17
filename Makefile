@@ -6,7 +6,7 @@
 #    By: clundber <clundber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:59:53 by clundber          #+#    #+#              #
-#    Updated: 2024/01/10 17:29:26 by clundber         ###   ########.fr        #
+#    Updated: 2024/01/17 14:52:12 by clundber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) 
-	@make fclean -C libft
+	@rm -f libft/libft.a
 
 re: fclean $(NAME) 
 
