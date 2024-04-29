@@ -2,8 +2,6 @@
 
 The art of pushing, and swapping. In other words, a sorting algorithm using two stacks.
 
-# The rules
-
 Only certain moves are allowed, mainly pushing from A to B or vice versa, and rotating the stacks either way, and rotating the two topmost numbers.
 
 The algorithm should sort all numbers on A, using B as help. 
